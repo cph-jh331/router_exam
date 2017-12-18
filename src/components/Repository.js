@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import repoStore from '../facades/repoStore';
 
-//this.props.match.params.id
-
 export default class Repository extends Component {
     constructor(props) {
         super(props);
