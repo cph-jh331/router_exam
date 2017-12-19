@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import repoStore from '../facades/repoStore';
+import repoAsyncFetch from '../facades/repoAsyncFetch';
 
 export default class Repository extends Component {
     constructor(props) {
@@ -9,7 +10,7 @@ export default class Repository extends Component {
 
     componentWillMount() {
         let params = this.props.match.params.id
-        repoStore.getSingleRepo(params, repo => {
+        repoAsyncFetch.getSingleRepo(params, repo => {
             this.setState({
                 repo
             });
@@ -19,8 +20,17 @@ export default class Repository extends Component {
 
         return (<div>
             <h2>Repository</h2>
-            <h3>Full name: {this.state.repo.full_name}</h3>
-            <h3>Size: {this.state.repo.size}</h3>
+            {this.state.repo && (
+                <div>
+                <h3>Full name: {this.state.repo.full_name}</h3>
+                <h3>Size: {this.state.repo.size}</h3>
+                </div>
+            )}
+            {!this.state.repo && (
+                <div>
+                    <h3>Repo does not exist</h3>
+                </div>
+            )}
         </div>
         )
     }

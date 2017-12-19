@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import repoStore from '../facades/repoStore';
+import repoAsyncFetch from '../facades/repoAsyncFetch';
 const repourl = "/repo/"
 
 export default class Repositories extends Component {
@@ -10,7 +11,7 @@ export default class Repositories extends Component {
     }
 
     componentWillMount() {
-        repoStore.getAll((repos => {
+        repoAsyncFetch.getAll((repos => {
             this.setState({
                 repos
             });
